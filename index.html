@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natureza Vive - Cadastro</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #1a831a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Container principal */
+  .cadastro-container {
+    background-color: #0e660e;
+    border-radius: 8px;
+    width: 340px;
+    padding-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+
+  /* Topo escuro */
+  .cadastro-header {
+    background-color: #155515;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    
+    
+  }
+  .header-logo{
+    width: 80px;
+    height: auto;
+    margin-left: 20px;
+    
+  }
+
+  /* Caixa branca com o texto CADASTRO */
+  .cadastro-header .label-box {
+    background-color: #155515;
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
+    border: 3px solid white;
+    
+  }
+
+  .cadastro-header .label-box h1 {
+    color: #FFD700;
+    font-size: 20px;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  /* Menu hambúrguer */
+  /*.menu-btn {
+    width: 28px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }*/
+
+  .menu-btn div {
+    background-color: #fff;
+    height: 3px;
+    border-radius: 5px;
+  }
+
+  /* Menu lateral */
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -220px;
+    width: 200px;
+    height: 100%;
+    background-color: #155515;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    padding-top: 60px;
+    transition: left 0.3s ease;
+  }
+
+  .menu.open {
+    left: 0;
+  }
+
+  .menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .menu a:hover {
+    background-color: #0e660e;
+  }
+
+  /* Campos */
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  label {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  input {
+    border: none;
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    outline: none;
+    background-color: #fff;
+  }
+
+  /* Botão */
+  .btn-cadastrar {
+    background-color: #FFD700;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+
+  .btn-cadastrar:hover {
+    background-color: #e6c200;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Menu lateral -->
+  <div class="menu" id="menu">
+    <a href="#">Início</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </div>
+
+  <!-- Caixa principal -->
+  <div class="cadastro-container">
+    <div class="cadastro-header">
+    
+      <div class="label-box">
+        <h1>CADASTRO</h1>
+      </div>
+      <img src="logo.png" alt="Logo" class="header-logo">
+      <div class="menu-btn" id="menuBtn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <form>
+      <label>Nome de usuário</label>
+      <input type="text" placeholder="">
+
+      <label>CPF / CNPJ</label>
+      <input type="text"  id="cpfCnpj" maxlength="14" required >
+
+      <label>Endereço</label>
+      <input type="text" placeholder="">
+
+      <label>Telefone</label>
+      <input type="text" placeholder="">
+
+      <label>E-mail</label>
+      <input type="email" placeholder="">
+
+      <label>Senha</label>
+      <input type="password" placeholder="">
+
+      <button type="submit" class="btn-cadastrar">CADASTRAR-SE</button>
+    </form>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+  const form = document.querySelector("form");
+  const cpfCnpjInput = document.getElementById("cpfCnpj");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault(); // impede o envio padrão
+
+    const valor = cpfCnpjInput.value.replace(/\D/g, ""); // remove tudo que não for número
+
+    if (valor.length === 11) {
+      // CPF
+      window.location.href = "5primeirapg.html";
+    } else if (valor.length === 14) {
+      // CNPJ
+      window.location.href = "2empresas.html";
+    } else {
+      alert("Digite um CPF (11 dígitos) ou CNPJ (14 dígitos) válido!");
+    }
+  });
+
+  </script>
+
+</body>
+</html>
